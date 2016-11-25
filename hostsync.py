@@ -89,12 +89,15 @@ def download_file(url, output_file, verbose=0):
 
 def main():
     url = 'https://raw.githubusercontent.com/racaljk/hosts/master/hosts'
-    src_file = '/tmp/hosts.dl'
-    dst_file = '/etc/hosts'
+    if os.name == 'posix':
+        src_file = '/tmp/hosts.dl'
+        dst_file = '/etc/hosts'
+    elif os.name == 'nt':
+        src_file = r'C:\hosts.dl'
+        dst_file = r'C:\Windows\System32\drivers\etc\hosts'
     download_file(url, src_file, 1)
     shutil.copyfile(src_file, dst_file)
     
-
 
 if __name__ == '__main__':
     main()
