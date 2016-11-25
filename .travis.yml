@@ -10,3 +10,5 @@ python:
   - "pypy"
 
 install: true
+
+script: true
